@@ -124,6 +124,54 @@ If your monitor is monochrome...
 
 ## Getting RetroFeed to Run at Boot
 
+On a Windows Machine with a MicroSD reader
+Download and install Raspberry Pi Imaging Software
+https://www.raspberrypi.com/software/
+
+Insert MicroSD Card
+Click the Operating System button to select an OS
+Select Raspberry PI OS Lite (32-bit)
+Click on Storage Button to select the MicroSD
+Configure System Settings via the Imager GUI Settings button
+Set the hostname
+Enable SSH
+Set Username and Password
+Configure WIFI (only supports DHCP)
+
+After the image has been written, carefully remove the MicroSD card and plug it into the Pi Zero
+
+Plug in a monitor and keyboard and power or connect via SSH
+Log In
+
+Update the OS and Install Git
+
+Sudo apt-get update
+sudo apt-get upgrade
+# Install Beautiful Soup for Python to allow html scraping
+sudo apt-get install python3-bs4
+sudo apt-get install git
+git clone https://github.com/jeffjetton/retrofeed
+cd retrofeed
+# It will fail to start with the current sample python script.  You must update as follows.
+nano ./retrofeed.by
+#update your Weather_Location and/or WX_LAT/WX_LONG
+#update the ISS data with your location (not all locations supported)
+
+Modify for your monitor and desired resolution
+	Here be monsters.
+	See the original project for info on configuring analog video
+	Because the Pi Zero is low powered, I had to buy a 5v externally powered HDMI to SVGA adapter to get it to display on my old monitor.
+
+# Start it up!
+cd ~/retrofeed
+python ./retrofeed.py	
+
+
+
+
+
+
+
 ### Transferring Files
 
 If you've downloaded the Python files directly from your Pi, you won't need this step. But if they're on your main computer, transfer them over using `scp`. Here's an example that assumes:
